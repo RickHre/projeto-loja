@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="/static/css/style.css"> <!-- Estilização -->
+</head>
+<body>
+    <h1>Cadastro de Clientes</h1>
+    <form id="formCadastro" action="/cadastro" method="POST">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" placeholder="Digite seu email" required><br><br>
+
+        <label for="telefone">Telefone:</label><br>
+        <input type="text" id="telefone" name="telefone" placeholder="Digite seu telefone"><br><br>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <script src="/static/js/script.js"></script> <!-- JavaScript -->
+</body>
+</html>
