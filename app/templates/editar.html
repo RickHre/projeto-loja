@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Editar Cliente{% endblock %}
+
+{% block content %}
+    <h1>Editar Cliente</h1>
+
+    <form action="/editar/{{ cliente.id }}" method="POST">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome" value="{{ cliente.nome }}" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" value="{{ cliente.email }}" required><br><br>
+
+        <label for="telefone">Telefone:</label><br>
+        <input type="text" id="telefone" name="telefone" value="{{ cliente.telefone }}"><br><br>
+
+        <button type="submit">Salvar Alterações</button>
+    </form>
+{% endblock %}
