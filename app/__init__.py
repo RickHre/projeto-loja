@@ -1,14 +1,19 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-# Inicializa a instância da aplicação Flask
-app = Flask(__name__)
+db = SQLAlchemy()
 
-# Configuração do banco de dados (MySQL)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:@localhost/loja'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+def create_app():
+    app = Flask(__name__, template_folder='templates')
+    app.config.from_object('config.Config')  # Carrega as configurações
 
-# Inicializa o SQLAlchemy
-db = SQLAlchemy(app)
+    db.init_app(app)
 
-from app import routes  # Importa as rotas
+    # Importa e registra os Blueprints
+    from app.main import main as main_blueprint
+    from app.cadastro import cadastro as cadastro_blueprint
+
+    app.register_blueprint(main_blueprint)
+    app.register_blueprint(cadastro_blueprint)
+
+    return app

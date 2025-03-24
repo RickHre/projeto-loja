@@ -1,8 +1,10 @@
-from app import app, db
+import os
+from app import create_app
 
-#Criação do Banco de dados
-with app.app_context():
-    db.create_all()
+# Verifica o caminho absoluto para o template base.html
+print(os.path.abspath("app/templates/base.html"))
+
+app = create_app()
 
 if __name__ == '__main__':
     app.run(debug=True)
