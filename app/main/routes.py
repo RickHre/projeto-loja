@@ -9,11 +9,6 @@ from flask import request
 def teste():
     return render_template('base.html')  # Testa se o Flask localiza o base.html
 
-import os
-@main.route('/')
-def index():
-    return render_template(os.path.abspath("app/main/templates/index.html"))
-
 # Página inicial
 @main.route('/')
 def index():
