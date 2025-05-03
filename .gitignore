@@ -1,0 +1,19 @@
+# Arquivos de configuração do Flask
+.flaskenv
+
+# Arquivos de banco de dados
+*.db
+*.sqlite
+
+# Diretórios de migração
+migrations/
+
+# Arquivos de ambiente virtual
+venv/
+.env
+
+# Arquivos do sistema operacional
+*.pyc
+__pycache__/
+.DS_Store
+Thumbs.db

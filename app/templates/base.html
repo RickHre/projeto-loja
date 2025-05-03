@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <ul class="menu">
+                <li class="menu-item">
+                    <a href="{{ url_for('auth.logout') }}"><i class="bi bi-house-door"></i> <span class="menu-text">INICIO</span></a>
+                </li>
+                <li class="menu-item active">
+                    <a href="{{ url_for('cliente.listar_clientes') }}"><i class="bi bi-people-fill"></i> <span class="menu-text">CLIENTES</span></a>
+                </li>
+            </ul>
+            <div class="logo-placeholder">
+                {% block logo %}
+                    <div class="logo-container">
+                        <img src="{{ url_for('static', filename='img/logo_urso.jpg') }}" alt="Logo Tribus Tiete" class="logo-image">
+                    </div>
+                {% endblock %}
+            </div>
+        </aside>
+        <main class="content">
+            <header class="content-header">
+                <div class="breadcrumb">
+                    {% block breadcrumb %}
+                    {% endblock %}
+                </div>
+                <div class="header-actions">
+                    <h2 class="content-title">
+                        <i class="bi bi-{% block title_icon %}{% endblock %}"></i>
+                        {% block page_title %}{% endblock %}
+                    </h2>
+                    <div class="actions">
+                        {% block actions %}
+                            {# Remova ou deixe este bloco vazio #}
+                        {% endblock %}
+                    </div>
+                </div>
+            </header>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                <script id="flash-messages-data" type="application/json">
+                    [
+                    {% for cat, msg in messages %}
+                        {"category": "{{ cat }}", "message": "{{ msg }}"}{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                    ]
+                </script>
+            {% endwith %}
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/flash_messages.js') }}"></script>
+</body>
+</html>

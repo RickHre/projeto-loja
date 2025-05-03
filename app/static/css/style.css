@@ -1,0 +1,200 @@
+/* style.css*/
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    background-color: #f0f0f0;
+    display: flex;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #222;
+    color: #fff;
+    width: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Alterado para space-between no base */
+}
+/* Se o .logo-placeholder tiver um estilo específico, podemos ajustar também */
+.logo-placeholder {
+    display: flex;       /* Para alinhar o conteúdo dentro */
+    justify-content: center; /* Centralizar horizontalmente */
+    align-items: flex-start; /* Alinhar ao topo verticalmente (simulando o top) */
+    width: 100%;         /* Ocupar a largura da sidebar */
+    /* Não definimos uma altura fixa aqui para o placeholder */
+}
+
+.logo-container {
+    width: 100%; /* Ocupar toda a largura do .logo-placeholder */
+    height: auto; /* A altura se ajustará ao conteúdo */
+    border-radius: 40px;
+    background: linear-gradient(to bottom, #f0f0f0, #333); /* Degradê vertical */
+    display: flex;
+    justify-content: center; /* Centralizar a imagem horizontalmente */
+    align-items: center; /* Centralizar a imagem verticalmente */
+    margin-top: auto; /* Empurrar para a parte inferior da sidebar */
+    margin-bottom: 20px; /* Adicionar espaço abaixo */
+}
+
+.logo-image {
+    max-width: 100%; /* A imagem tenta ocupar toda a largura do container */
+    max-height: 100%; /* A imagem tenta ocupar toda a altura do container */
+    opacity: 0.75; /* Aplicar a transparência */
+    object-fit: contain; /* Manter a proporção e caber dentro */
+    border-radius: 40px;
+}
+.menu {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.menu-item {
+    margin-bottom: 10px;
+}
+
+.menu-item a {
+    display: flex;
+    align-items: center;
+    color: #ddd;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.menu-item a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.menu-item i {
+    margin-right: 8px;
+    font-size: 1.5em; /* Ajustado para um tamanho consistente */
+    display: flex;
+    align-items: center;
+}
+
+.menu-item.active a {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.menu-text {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+/* Content */
+.content {
+    flex-grow: 1;
+    padding: 20px; /* Padding geral para o conteúdo */
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.content-header {
+    margin-bottom: 15px; /* Margem inferior geral para o header */
+}
+
+.breadcrumb {
+    color: #777;
+    font-size: 0.8em;
+    margin-bottom: 10px;
+}
+
+.header-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.content-title {
+    font-size: 2em;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.content-title i {
+    display: flex;
+    align-items: center;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Separator */
+.separator {
+    border-bottom: 1px solid #ddd;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Responsividade (nível container e sidebar) */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        padding: 15px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu {
+        display: flex;
+        width: auto;
+    }
+
+    .menu-item {
+        margin-bottom: 0;
+        margin-left: 8px;
+    }
+
+    .menu-item a {
+        padding: 6px;
+        font-size: 0.8em;
+    }
+
+    .menu-text {
+        display: none;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .header-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
