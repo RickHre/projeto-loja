@@ -19,8 +19,10 @@ def create_app(config_class=Config):
 
     from . import routes
     from .auth import auth_bp
-    app.register_blueprint(routes.cliente_bp)
-    app.register_blueprint(auth_bp)
+    app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(routes.cliente_bp, url_prefix='/clientes')
+
+    app.register_blueprint(routes.cliente_bp, name='root')
 
     from .models import Usuario  # Importe os modelos
 

@@ -1,12 +1,17 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
-
 from datetime import date
 
-cliente_bp = Blueprint('cliente', __name__, url_prefix='/clientes')
+# Importando o Blueprint para criar rotas
+cliente_bp = Blueprint('cliente', __name__)
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-# Rotas para o Blueprint de Cliente
+# Rota para a página inicial do cliente
 @cliente_bp.route('/')
+def index():
+    return redirect(url_for('auth.login'))
+
+# Rotas para o Blueprint de Cliente
+@cliente_bp.route('/clientes')
 def listar_clientes():
     from .models import Cliente, db
     search_term = request.args.get('search_term')
@@ -144,24 +149,3 @@ def atualizar_cliente(cliente_id):
     db.session.commit()
     flash('Cliente atualizado com sucesso!', 'success')
     return redirect(url_for('cliente.listar_clientes'))
-
-# Rotas para o Blueprint de Autenticação
-@auth_bp.route('/login')
-def login():
-    return render_template('login.html')
-
-@auth_bp.route('/cadastro')
-def cadastro():
-    return render_template('cadastro.html')
-
-@auth_bp.route('/login', methods=['POST'])
-def fazer_login():
-    return 'Fazendo login...'
-
-@auth_bp.route('/cadastro', methods=['POST'])
-def registrar_usuario():
-    return 'Registrando usuário...'
-
-@auth_bp.route('/logout')
-def logout():
-    return 'Deslogando usuário...'

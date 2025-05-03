@@ -6,6 +6,11 @@ from .import db
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+# Rota para a página inicial
+@auth_bp.route('/')
+def index():
+    return redirect(url_for('auth.login'))
+
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
