@@ -1,10 +1,6 @@
 # Arquivos de configuração do Flask
 .flaskenv
 
-# Arquivos de banco de dados
-*.db
-*.sqlite
-
 # Diretórios de migração
 migrations/
 
