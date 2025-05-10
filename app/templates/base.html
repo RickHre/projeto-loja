@@ -43,11 +43,13 @@
                     </h2>
                     <div class="actions">
                         {% block actions %}
-                            {# Remova ou deixe este bloco vazio #}
                         {% endblock %}
                     </div>
                 </div>
+                <div class="separator"></div>
             </header>
+
+            {# Bloco de mensagens flash movido para base.html #}
             {% with messages = get_flashed_messages(with_categories=true) %}
                 <script id="flash-messages-data" type="application/json">
                     [
@@ -57,10 +59,13 @@
                     ]
                 </script>
             {% endwith %}
+
             {% block content %}
             {% endblock %}
         </main>
     </div>
     <script src="{{ url_for('static', filename='js/flash_messages.js') }}"></script>
+    {% block scripts %}
+    {% endblock %}
 </body>
 </html>

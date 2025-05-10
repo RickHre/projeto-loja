@@ -11,7 +11,7 @@ def index():
     return redirect(url_for('auth.login'))
 
 # Rotas para o Blueprint de Cliente
-@cliente_bp.route('/clientes')
+@cliente_bp.route('/listar_clientes')
 def listar_clientes():
     from .models import Cliente, db
     search_term = request.args.get('search_term')

@@ -2,12 +2,6 @@
 
 {% block title %}Clientes{% endblock %}
 
-{% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/clientes.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{% endblock %}
-
 {% block breadcrumb %}
     <span>CRM / MEUS CLIENTES</span>
 {% endblock %}
@@ -17,24 +11,26 @@
 {% block page_title %}CLIENTES{% endblock %}
 
 {% block actions %}
-    <a href="{{ url_for('cliente.novo_cliente') }}" class="add-client-button"><span class="bi bi-plus-lg"></span> Add Cliente</a>
-    <div class="search-bar">
-        <form method="GET" action="{{ url_for('cliente.listar_clientes') }}">
-            <input type="text" name="search_term" placeholder="PESQUISAR">
-            <button type="submit"><i class="bi bi-search"></i></button>
-        </form>
-    </div>
+    <a href="{{ url_for('cliente.novo_cliente') }}" class="btn btn-primary">
+        <span class="bi bi-plus-lg"></span> Add Cliente
+    </a>
+    <form method="GET" action="{{ url_for('cliente.listar_clientes') }}" class="search-bar">
+        <input type="text" name="search_term" placeholder="PESQUISAR">
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-search"></i>
+        </button>
+    </form>
 {% endblock %}
 
 {% block content %}
-    <section class="client-list">
-        <table class="clients-table">
+    <section class="data-list">
+        <table class="data-table">
             <thead>
                 <tr>
                     <th>NOME</th>
                     <th>TELEFONE</th>
                     <th>ENDEREÇO</th>
-                    <th>EDITAR</th>
+                    <th class="actions-cell">EDITAR</th> {# Using generic actions-cell class #}
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +39,8 @@
                         <td>{{ cliente.nome_completo }}</td>
                         <td>{{ cliente.telefone }}</td>
                         <td>{{ cliente.rua }}, {{ cliente.numero }}, {{ cliente.cidade }}</td>
-                        <td class="edit-actions">
+                        <td class="actions-cell"> {# Using generic actions-cell class #}
+                            {# Styling links within actions-cell #}
                             <a href="{{ url_for('cliente.editar_cliente', cliente_id=cliente.id) }}"><i class="bi bi-pencil"></i></a>
                             <a href="#" class="delete-client" data-url="{{ url_for('cliente.excluir_cliente', cliente_id=cliente.id) }}">
                                 <i class="bi bi-trash"></i>

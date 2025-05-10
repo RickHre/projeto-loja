@@ -1,48 +1,23 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Login{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-<body>
-    <div class="container">
-        <div class="left-section">
-            <img src="{{ url_for('static', filename='img/logo_urso.jpg') }}" alt="Logo Tribus Tiete" class="logo-image-full">
-        </div>
-        {% block right_section %}
-        <div class="right-section">
-            <h2>LOGIN</h2>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            <script id="flash-messages-data" type="application/json">
-                [
-                {% for cat, msg in messages %}
-                    {"category": "{{ cat }}", "message": "{{ msg }}"}{% if not loop.last %},{% endif %}
-                {% endfor %}
-                ]
-            </script>
-            {% endwith %}
-            <form class="login-form" action="{{ url_for('auth.login') }}" method="POST">
-                <div class="input-group">
-                    <label for="email">EMAIL</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">SENHA</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <p class="create-account"><a href="{{ url_for('auth.cadastro') }}">CRIAR CONTA</a></p>
-                <button type="submit" class="btn btn-primary login-button">ENTRAR</button>
-            </form>
-        </div>
-        {% endblock %}
+{% extends 'inicio_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block header %}LOGIN{% endblock %}
+
+{% block content %}
+<form class="login-form" action="{{ url_for('auth.login') }}" method="POST">
+    <div class="form-input-group">      {# Classe genérica sugerida (ou mantenha 'input-group' se o CSS usar) #}
+        <label class="form-label" for="email">EMAIL</label> {# Classe genérica #}
+        <input class="form-input" type="email" id="email" name="email" required> {# Classe genérica #}
     </div>
-    <footer>
-        <p>COPYRIGHT 2025</p>
-    </footer>
-    <script src="{{ url_for('static', filename='js/flash_messages.js') }}"></script>
-</body>
-</html>
+    <div class="form-input-group">
+        <label class="form-label" for="password">SENHA</label> {# Classe genérica #}
+        <input class="form-input" type="password" id="password" name="password" required> {# Classe genérica #}
+    </div>
+    <p class="form-link-section"><a href="{{ url_for('auth.cadastro') }}">CRIAR CONTA</a></p> {# Já estava bom! #}
+    {# A classe .form-button será a base. Os estilos de .login-form .form-button no CSS cuidarão das especificidades.
+       'btn btn-primary' são do Bootstrap? Se sim, podem coexistir ou serem sobrescritos pelo seu .form-button.
+    #}
+    <button type="submit" class="form-button btn btn-primary">ENTRAR</button> {# Classe genérica, removido 'login-button' #}
+</form>
+{% endblock %}

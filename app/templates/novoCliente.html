@@ -2,12 +2,6 @@
 
 {% block title %}Novo Cliente{% endblock %}
 
-{% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/novoCliente.css') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-{% endblock %}
-
 {% block breadcrumb %}
     <span>CRM</span> / <span>MEUS CLIENTES</span>
 {% endblock %}
@@ -18,18 +12,10 @@
 
 {% block content %}
     <section class="form-section">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            <script id="flash-messages-data" type="application/json">
-                [
-                {% for cat, msg in messages %}
-                    {"category": "{{ cat }}", "message": "{{ msg }}"}{% if not loop.last %},{% endif %}
-                {% endfor %}
-                ]
-            </script>
-        {% endwith %}
         <h3>DADOS PESSOAIS</h3>
         <div class="separator"></div>
-        <form class="new-client-form" method="post" action="{{ url_for('cliente.salvar_cliente') }}">
+        {# Using generic app-form, form-row, and form-group classes #}
+        <form class="app-form" method="post" action="{{ url_for('cliente.salvar_cliente') }}">
             <div class="form-row">
                 <div class="form-group">
                     <label for="nome_completo">NOME COMPLETO</label>
@@ -71,13 +57,9 @@
                 </div>
             </div>
             <div class="actions">
-                <a href="{{ url_for('cliente.listar_clientes') }}" class="cancel-button">CANCELAR</a>
-                <button type="submit" class="save-button"><i class="bi bi-check-lg"></i> SALVAR</button>
+                <a href="{{ url_for('cliente.listar_clientes') }}" class="btn btn-secondary">CANCELAR</a>
+                <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> SALVAR</button>
             </div>
         </form>
     </section>
-{% endblock %}
-
-{% block scripts %}
-    <script src="{{ url_for('static', filename='js/flash_messages.js') }}"></script>
 {% endblock %}
