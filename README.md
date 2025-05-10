@@ -25,9 +25,6 @@ Uma aplicação web desenvolvida em Flask para gerenciar clientes, incluindo fun
 ---
 
 ## 📦 Estrutura do Projeto
-# Estrutura do Projeto
-
-# Estrutura do Projeto
 
 loja_flask/
 ├── app/                         # Diretório principal da aplicação
